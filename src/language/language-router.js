@@ -6,6 +6,8 @@ const bodyParser = express.json();
 const languageRouter = express.Router();
 
 languageRouter.use(requireAuth).use(async (req, res, next) => {
+  console.log(req.user);
+  console.log(req.language);
   try {
     const language = await LanguageService.getUsersLanguage(req.app.get('db'), req.user.id);
 
@@ -22,6 +24,7 @@ languageRouter.use(requireAuth).use(async (req, res, next) => {
 });
 
 languageRouter.get('/', async (req, res, next) => {
+  console.log(req.language);
   try {
     const words = await LanguageService.getLanguageWords(req.app.get('db'), req.language.id);
 
@@ -49,7 +52,6 @@ languageRouter.get('/head', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-  //res.send('implement me!')
 });
 
 languageRouter.post('/guess', bodyParser, async (req, res, next) => {
@@ -61,14 +63,8 @@ languageRouter.post('/guess', bodyParser, async (req, res, next) => {
   }
 
   let { head, total_score } = await LanguageService.getUsersLanguage(req.app.get('db'), req.user.id);
-  //console.log('head is ', head);
   let headData = await LanguageService.getWordById(req.app.get('db'), head);
-
-  //console.log(headData);
-
   let nextWord = await LanguageService.getWordById(req.app.get('db'), headData.next);
-
-  //console.log('nextWord is ', nextWord);
 
   let resBody = {
     nextWord: nextWord.original,
@@ -78,15 +74,13 @@ languageRouter.post('/guess', bodyParser, async (req, res, next) => {
     answer: headData.translation,
     isCorrect: false
   };
+  onsole.log('Guess is ' + guess + ' and headData.translation is ' + headData.translation);
 
-  //console.log('Guess is ' + guess + ' and headData.translation is ' + headData.translation);
-
-  if (guess === headData.translation) {
+  if (guess.toLowerCase() === headData.translation.toLowerCase()) {
     resBody.isCorrect = true;
     resBody.totalScore++;
     headData.correct_count++;
     headData.memory_value *= 2;
-    console.log('That guess is correct');
   } else {
     headData.incorrect_count++;
     headData.memory_value = 1;
