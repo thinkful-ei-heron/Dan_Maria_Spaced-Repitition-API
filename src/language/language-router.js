@@ -6,8 +6,6 @@ const bodyParser = express.json();
 const languageRouter = express.Router();
 
 languageRouter.use(requireAuth).use(async (req, res, next) => {
-  console.log(req.user);
-  console.log(req.language);
   try {
     const language = await LanguageService.getUsersLanguage(req.app.get('db'), req.user.id);
 
@@ -24,7 +22,6 @@ languageRouter.use(requireAuth).use(async (req, res, next) => {
 });
 
 languageRouter.get('/', async (req, res, next) => {
-  console.log(req.language);
   try {
     const words = await LanguageService.getLanguageWords(req.app.get('db'), req.language.id);
 
@@ -58,7 +55,6 @@ languageRouter.post('/guess', bodyParser, async (req, res, next) => {
   let { guess } = req.body;
 
   if (!guess) {
-    console.log('guess is missing');
     res.status(400).send({ error: `Missing 'guess' in request body` });
   }
 
@@ -74,7 +70,6 @@ languageRouter.post('/guess', bodyParser, async (req, res, next) => {
     answer: headData.translation,
     isCorrect: false
   };
-  onsole.log('Guess is ' + guess + ' and headData.translation is ' + headData.translation);
 
   if (guess.toLowerCase() === headData.translation.toLowerCase()) {
     resBody.isCorrect = true;
@@ -125,9 +120,6 @@ languageRouter.post('/guess', bodyParser, async (req, res, next) => {
   await LanguageService.updateWord(req.app.get('db'), temp.id, temp);
   await LanguageService.updateWord(req.app.get('db'), headData.id, headData);
   await LanguageService.updateLanguage(req.app.get('db'), req.language.id, updatedLang);
-
-  //console.log('temp is ', temp);
-  //console.log('currNode is ', currNode);
 
   res.send(resBody);
 });
