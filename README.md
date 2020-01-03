@@ -1,6 +1,6 @@
 # Le Baguette: Spaced repetition API!
 # About
-Server is used for back end of app and connects to client.
+Server is used for back end of app and connects to client and uses spaced repetition to learn a language. 
 
 ## WEBSITE: [click here](https://spaced-repetition-app.mal3905.now.sh/learn)
 
@@ -12,10 +12,21 @@ Server side: Express.js, Node.js, PostgreSQL and Heroku.
 ## Links to repos: [Client](https://github.com/thinkful-ei-heron/Dan_Maria_Spaced-Repetition.git) | [Server](https://github.com/thinkful-ei-heron/Dan_Maria_Spaced-Repitition-API.git)
 
 # URL/ Endpoints: 
+
 ## /api/auth : 
 POST: responds with JWT auth token using secrete when user enters valid user credentials.
 
 PATCH: Refreshes token every few mins
+    
+    {
+        user_name: String,
+        password: String
+    }
+
+        res.body
+    {
+        authToken: String
+    }
 
 ## /api/language
 GET: Gets language chart owned by the logged in user
@@ -27,7 +38,19 @@ POST: Submits a guess for specified language and responds with incorrect/correct
 
 
 ### /api/user
-POST: Lets user register for an account and posts data into the database so user can login next time. 
+POST: Lets user register for an account and posts data into the database so user can login next time.
+
+    {
+    user_name: String,
+    password: String
+    }
+
+    // res.body
+    {
+    id: userId,
+    user_name: String,
+    date_created: Date
+    }
 
 
 
