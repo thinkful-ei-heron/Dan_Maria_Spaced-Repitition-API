@@ -21,7 +21,7 @@ VALUES
 
 INSERT INTO "word" ("id", "language_id", "original", "translation", "next")
 VALUES
-  (1, 1, 'salle de repos', 'restroom', 2),
+  (1, 1, 'salle de bains', 'bathroom', 2),
   (2, 1, 'l''eau', 'water', 3),
   (3, 1, 's''il vous plaît', 'please', 4),
   (4, 1, 'bonjour', 'hello', 5),

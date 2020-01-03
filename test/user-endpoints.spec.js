@@ -177,7 +177,7 @@ describe('User Endpoints', function() {
           name: 'French',
           total_score: 0,
           words: [
-            { original: 'salle de repos', translation: 'restroom' },
+            { original: 'salle de bains', translation: 'bathroom' },
             { original: `l'eau`, translation: 'water' },
             { original: `s'il vous plaît`, translation: 'please' },
             { original: 'bonjour', translation: 'hello' },
