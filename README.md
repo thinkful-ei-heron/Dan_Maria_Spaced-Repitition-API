@@ -1,6 +1,37 @@
-# Spaced repetition API!
+# Le Baguette: Spaced repetition API!
+# About
+Server is used for back end of app and connects to client.
 
-## Local dev setup
+## WEBSITE: [click here](https://spaced-repetition-app.mal3905.now.sh/learn)
+
+## Technoligies Used
+Client side: React, Javascript, Zeit, HTML and CSS.
+
+Server side: Express.js, Node.js, PostgreSQL and Heroku. 
+
+## Links to repos: [Client](https://github.com/thinkful-ei-heron/Dan_Maria_Spaced-Repetition.git) | [Server](https://github.com/thinkful-ei-heron/Dan_Maria_Spaced-Repitition-API.git)
+
+# URL/ Endpoints: 
+## /api/auth : 
+POST: responds with JWT auth token using secrete when user enters valid user credentials.
+
+PATCH: Refreshes token every few mins
+
+## /api/language
+GET: Gets language chart owned by the logged in user
+
+GET/head: Gets language head with next word. 
+
+POST: Submits a guess for specified language and responds with incorrect/correct and updates the score
+
+
+
+### /api/user
+POST: Lets user register for an account and posts data into the database so user can login next time. 
+
+
+
+# Local dev setup
 
 If using user `dunder-mifflin`:
 
