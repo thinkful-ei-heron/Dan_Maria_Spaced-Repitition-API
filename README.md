@@ -31,9 +31,34 @@ PATCH: Refreshes token every few mins
 ## /api/language
 GET: Gets language chart owned by the logged in user
 
-GET/head: Gets language head with next word. 
+        {
+            language: Object, 
+            words: Array
+        }
 
-POST: Submits a guess for specified language and responds with incorrect/correct and updates the score
+GET/head: Gets language head with next words/ scores.  
+
+        {
+        nextword: String,
+        wordCorrectCount: Interger,
+        wordIncorrectCount: Interger,
+        totalScore: Interger
+        }
+
+POST: Submits a guess for specified language and responds with incorrect/correct feedback. 
+
+        {
+        guess: String
+        }
+
+        {
+        nextWord: String, 
+        wordCorrectCount: Interger,
+        wordIncorrectCount: Interger,
+        totalScore: Interger,
+        answer: String,
+        isCorrect: Boolean
+        }
 
 
 
@@ -45,7 +70,6 @@ POST: Lets user register for an account and posts data into the database so user
     password: String
     }
 
-    // res.body
     {
     id: userId,
     user_name: String,
