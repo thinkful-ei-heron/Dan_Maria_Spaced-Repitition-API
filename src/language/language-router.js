@@ -103,7 +103,7 @@ languageRouter.post('/guess', bodyParser, async (req, res, next) => {
   //otherwise --
   //temp.next => headData.id  -- knex(word).where({id: temp.id}.update({next: headData.id}))
   //headData.next => currNode.id  -- knex(word).where({id: headData.id}.update({next: currNode.id}))
-  //update head
+  //ALWAYS -- update head
 
   let newHead = headData.next;
 

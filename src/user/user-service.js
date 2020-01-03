@@ -54,7 +54,7 @@ const UserService = {
         .first();
 
       const languageWords = [
-        ['salle de repos', 'restroom', 2],
+        ['salle de bains', 'bathroom', 2],
         [`l'eau`, 'water', 3],
         [`s'il vous plaît`, 'please', 4],
         ['bonjour', 'hello', 5],
