@@ -33,7 +33,6 @@ const LanguageService = {
   },
 
   getWordById(db, id) {
-    console.log(id);
     return db
       .from('word')
       .select('id', 'original', 'translation', 'next', 'memory_value', 'correct_count', 'incorrect_count')

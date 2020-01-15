@@ -73,6 +73,7 @@ describe.only('Language Endpoints', function() {
         .expect(200)
         .expect(res => {
           expect(res.body).to.have.keys('language', 'words');
+          
 
           expect(res.body.language).to.have.property('id', usersLanguage.id);
           expect(res.body.language).to.have.property('name', usersLanguage.name);
